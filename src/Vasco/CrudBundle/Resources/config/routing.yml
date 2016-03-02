@@ -1,0 +1,3 @@
+vasco_crud_homepage:
+    path:     /
+    defaults: { _controller: VascoCrudBundle:Default:index }
