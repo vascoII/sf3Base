@@ -1,4 +1,8 @@
-sf3Base
-=======
+# sf3Base
 
-A Symfony project created on March 2, 2016, 7:49 pm.
+Little Symfony 3 base skeleton with common component
+
+- Authentication based on FOS-User Module
+- ACL Module
+- Rest Module
+- CRUD Module
