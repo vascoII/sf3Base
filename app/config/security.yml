@@ -23,11 +23,24 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-                # if you are using Symfony < 2.8, use the following config instead:
-                # csrf_provider: form.csrf_provider
+                 # the user is redirected here when they need to log in
+                login_path: /login
+                
+                # login success redirecting options (read further below)
+                always_use_default_target_path: false
+                default_target_path:            /homepage
+                target_path_parameter:          _target_path
+                use_referer:                    false
 
-            logout:       true
-            anonymous:    true
+            logout:       
+                path:   /logout
+                target: /login
+                invalidate_session: false
+                delete_cookies:
+                    a: { path: null, domain: null }
+                    b: { path: null, domain: null }
+                
+            anonymous:    true         
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
