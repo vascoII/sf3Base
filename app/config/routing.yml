@@ -1,6 +1,6 @@
 vasco_crud:
-    resource: "@VascoCrudBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@VascoCrudBundle/Controller/"
+    type:     annotation
 
 app:
     resource: "@AppBundle/Controller/"

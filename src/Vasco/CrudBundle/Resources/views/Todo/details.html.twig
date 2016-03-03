@@ -1,0 +1,34 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}VascoCrudBundle:Todo:details{% endblock %}
+
+{% block body %}
+<div data-example-id="striped-table" class="bs-example"> 
+    <a href="/todos" class="btn btn-default">Back</a>
+    <h2 class="page-header">Todo Details</h2>
+    <table class="table table-striped"> 
+        <thead> 
+            <tr> 
+                <th>#</th> 
+                <th>Todo</th> 
+                <th>Category</th> 
+                <th>Description</th>
+                <th>Priority</th>
+                <th>Due Date</th>
+                <th>Create Date</th>
+            </tr> 
+        </thead> 
+        <tbody> 
+            <tr> 
+                <th scope="row">{{todo.id}}</th> 
+                <td>{{todo.name}}</td> 
+                <td>{{todo.category}}</td> 
+                <td>{{todo.description}}</td>
+                <td>{{todo.priority}}</td>
+                <td>{{todo.dueDate|date}}</td>
+                <td>{{todo.createDate|date}}</td>
+            </tr>  
+        </tbody> 
+    </table> 
+</div>
+{% endblock %}
