@@ -4,6 +4,7 @@ namespace Vasco\CrudBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Todo
  *
@@ -62,6 +63,12 @@ class Todo
      * @ORM\Column(name="create_date", type="datetime")
      */
     private $createDate;
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="Vasco\UserBundle\Entity\User", inversedBy="todos", cascade={"remove"})
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
+   protected $user;
 
 
     /**
@@ -217,5 +224,28 @@ class Todo
     {
         return $this->createDate;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \Vasco\UserBundle\Entity\User $user
+     *
+     * @return Todo
+     */
+    public function setUser(\Vasco\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Vasco\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}
