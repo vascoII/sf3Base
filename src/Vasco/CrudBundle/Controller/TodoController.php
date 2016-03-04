@@ -28,10 +28,40 @@ class TodoController extends Controller
         $todos = $this->getDoctrine()
                 ->getRepository('VascoCrudBundle:Todo')
                 ->findAll();
+        var_dump($todos); die;
         return $this->render('VascoCrudBundle:Todo:list.html.twig', array(
             'todos' => $todos
         ));
     }
+    
+    /**
+     * @Route("/todossp", name="todosp_list")
+     */
+    public function listspAction()
+    {
+        // set doctrine
+        $em = $this->getDoctrine()->getManager()->getConnection();
+        // prepare statement
+        $sth = $em->prepare("CALL list_todos()");
+        // execute and fetch
+        $sth->execute();
+        $result = $sth->fetchAll();
+        
+        $todo = new Todo();
+        $dbTodoHydrator = $this->get('vasco.todobundle.dbtodohydrator');
+        $todos = [];
+        
+        foreach ($result as $res){
+            $todos[] = $dbTodoHydrator->hydrate($res, $todo);
+        }
+
+        var_dump($todos); die;
+        return $this->render('VascoCrudBundle:Todo:listsp.html.twig', array(
+            'todos' => $todos
+        ));
+    }
+    
+    
     
     /**
      * @Route("/todo/create", name="todo_create")
