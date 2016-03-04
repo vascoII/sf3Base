@@ -55,8 +55,7 @@ class TodoController extends Controller
             $todos[] = $dbTodoHydrator->hydrate($res, $todo);
         }
 
-        var_dump($todos); die;
-        return $this->render('VascoCrudBundle:Todo:listsp.html.twig', array(
+        return $this->render('VascoCrudBundle:Todo:list.html.twig', array(
             'todos' => $todos
         ));
     }
