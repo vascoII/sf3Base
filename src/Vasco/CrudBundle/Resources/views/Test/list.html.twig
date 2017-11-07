@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}VascoCrudBundle:Test:list{% endblock %}
+
+{% block body %}
+<div data-example-id="striped-table" class="bs-example"> 
+    <h2 class="page-header">Latest Tests</h2>
+    <table class="table table-striped"> 
+        <thead> 
+            <tr> 
+                <th>#</th> 
+                <th>Test</th> 
+                <th>Due Date</th>
+                <th></th>
+            </tr> 
+        </thead> 
+        <tbody> 
+            {% for test in tests %}
+            <tr> 
+                <th scope="row">{{test.id}}</th> 
+                <td>{{test.name}}</td> 
+                <td>{{test.dueDate|date}}</td>
+                <td>
+                    <a href="/test/details/{{test.id}}" class="btn btn-success">Detail</a>
+                    <a href="/test/edit/{{test.id}}" class="btn btn-default">Edit</a>
+                    <a href="/test/delete/{{test.id}}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>  
+            {% endfor %}
+        </tbody> 
+    </table> 
+</div>
+{% endblock %}
